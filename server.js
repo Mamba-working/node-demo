@@ -21,21 +21,21 @@ var server = http.createServer(function(request, response){
 
   console.log('HTTP 路径为\n' + path)
   if(path == '/style.js'){
-    response.setHeader('Content-Type', 'text/css; charset=utf-8')
-    response.write('body{background-color: #ddd;}h1{color: red;}')
-    response.end()
-  }else if(path == '/script.html'){
     response.setHeader('Content-Type', 'text/javascript; charset=utf-8')
     response.write('alert("这是JS执行的")')
     response.end()
-  }else if(path == '/index.css'){
+  }else if(path == '/'){
     response.setHeader('Content-Type', 'text/html; charset=utf-8')
     response.write('<!DOCTYPE>\n<html>'  + 
-      '<head><link rel="stylesheet" href="/style.js">' +
-      '</head><body>'  +
-      '<h1>你好</h1>' +
-      '<script src="/script.html"></script>' +
-      '</body></html>')
+    '<head><link rel="stylesheet" href="/style.css">' +
+    '</head><body>'  +
+    '<h1>你好</h1>' +
+    '<script src="/script.js"></script>' +
+    '</body></html>')
+    response.end()
+  }else if(path == '/style.css'){
+    response.setHeader('Content-Type', 'text/css; charset=utf-8')
+    response.write('body{background-color: #ddd;}h1{color: red;}')
     response.end()
   }else{
     response.statusCode = 404
@@ -47,34 +47,3 @@ var server = http.createServer(function(request, response){
 
 server.listen(port)
 console.log('监听 ' + port + ' 成功\n请用在空中转体720度然后用电饭煲打开 http://localhost:' + port)
-
-
-
-
-
-
-
-
-
-
-
-  console.log('方方说：得到 HTTP 路径\n' + path)
-  console.log('方方说：查询字符串为\n' + query)
-  console.log('方方说：不含查询字符串的路径为\n' + pathNoQuery)
-
-
-
-
-
-
-
-
-
-
-  /******** 代码结束，下面不要看 ************/
-})
-
-server.listen(port)
-console.log('监听 ' + port + ' 成功\n请用在空中转体720度然后用电饭煲打开 http://localhost:' + port)
-
-
